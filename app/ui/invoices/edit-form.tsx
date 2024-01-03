@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
@@ -22,6 +22,7 @@ export default function EditInvoiceForm({
   const initialState = { message: null, errors: {} };
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
   const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
+  const { pending } = useFormStatus();
 
   return (
     <form action={dispatch}>
@@ -151,7 +152,9 @@ export default function EditInvoiceForm({
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button aria-disabled={pending} type="submit">
+          Edit Invoice
+        </Button>
       </div>
     </form>
   );
