@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
+
 import { Suspense } from 'react';
 import { lusitana } from '@/app/ui/font';
 
